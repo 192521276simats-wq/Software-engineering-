@@ -1,0 +1,51 @@
+class OrderService:
+    def __init__(self):
+        self.orders = []
+
+    def place_order(self, customer, restaurant, item, quantity):
+        order = {
+            "Customer": customer,
+            "Restaurant": restaurant,
+            "Item": item,
+            "Quantity": quantity,
+            "Status": "Order Placed"
+        }
+        self.orders.append(order)
+        print("Order placed successfully!")
+
+    def view_orders(self):
+        if len(self.orders) == 0:
+            print("No orders found.")
+        else:
+            print("\nFood Orders")
+            for i, order in enumerate(self.orders, start=1):
+                print("\nOrder", i)
+                for key, value in order.items():
+                    print(key + ":", value)
+
+service = OrderService()
+
+while True:
+    print("\n--- Food Delivery System ---")
+    print("1. Place Order")
+    print("2. View Orders")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        customer = input("Customer Name: ")
+        restaurant = input("Restaurant Name: ")
+        item = input("Food Item: ")
+        quantity = int(input("Quantity: "))
+        service.place_order(customer, restaurant, item, quantity)
+
+    elif choice == "2":
+        service.view_orders()
+
+    elif choice == "3":
+        print("Thank you!")
+        break
+
+    else:
+        print("Invalid Choice")
